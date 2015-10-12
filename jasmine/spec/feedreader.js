@@ -59,23 +59,23 @@ $(function() {
     /* Beforeeach make sure that we refer body with variable named bodyElem
     */
     beforeEach(function () {
-        bodyElem = $('body');
+      bodyElem = $('body');
     });
 
     /* This test ensures that menu is hidden by default.
     */
     it('is hidden by default', function () {
-        expect(bodyElem.hasClass('menu-hidden')).toBe(true);
+      expect(bodyElem.hasClass('menu-hidden')).toBe(true);
     });
 
     /* This test ensures that menu changes visibility when menu icon is clicked
-     */
+    */
     it('hides and shows menu when menu icon is clicked', function () {
-        var menuIcon = $('.menu-icon-link');
-        menuIcon.click();
-        expect(bodyElem.hasClass('menu-hidden')).toBe(false);
-        menuIcon.click();
-        expect(bodyElem.hasClass('menu-hidden')).toBe(true);
+      var menuIcon = $('.menu-icon-link');
+      menuIcon.click();
+      expect(bodyElem.hasClass('menu-hidden')).toBe(false);
+      menuIcon.click();
+      expect(bodyElem.hasClass('menu-hidden')).toBe(true);
     });
   });
 
@@ -89,6 +89,8 @@ $(function() {
       });
     });
 
+    /* This test ensures that feed container has atleast one entry of feed
+     */
     it('has atleast one entry for the feed', function () {
       expect($('.feed .entry').length).toBeGreaterThan(0);
     });
@@ -96,20 +98,29 @@ $(function() {
 
   /* Test Suite for New Feed Selection
   */
-  xdescribe('New Feed Selection', function () {
+  describe('New Feed Selection', function () {
 
     beforeEach(function () {
-        spyOn(window, 'loadFeed').and.callThrough();
+      spyOn(window, 'loadFeed').and.callThrough();
     });
 
-    xit('changes the content when loadFeed is called with different selection', function (done) {
-        var contentFeed = $('.feed .entry').html();
-        expect(contentFeed).toBeTruthy();
-        var menuIcon = $('.menu-icon-link');
-        menuIcon.click();
-        $('.feed-list a').last().click();
-        var newContent = $('.feed .entry').html();
-        expect(newContent).not.toEqual(contentFeed);
+    /* This test ensures that content of feed entries changes when loadFeed is called
+     */
+    it('changes the content when loadFeed is called with different selection', function (done) {
+      var menuIcon = $('.menu-icon-link');
+      var defaultContent = $('.feed .entry').html();
+      expect(defaultContent).toBeTruthy();
+      menuIcon.click();
+      $('.feed-list a').last().click();
+      done();
+      var newContent = $('.feed .entry').html();
+      expect(newContent).not.toEqual(defaultContent);
+    });
+
+    /* After each is reseting view with original call for Udacity feeds
+     */
+    afterEach(function () {
+      loadFeed(0);
     });
   });
 }());
