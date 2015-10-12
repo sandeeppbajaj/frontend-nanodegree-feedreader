@@ -16,3 +16,4 @@ The goal was to write various test Suites to test the functionalities of the fee
 2. Open index.html file in your browser
 3. Check test results in the bottom of the page.
 
+![Alt text](/images/test-results.png?raw=true)
