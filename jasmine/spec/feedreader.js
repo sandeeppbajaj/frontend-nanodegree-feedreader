@@ -49,7 +49,6 @@ $(function() {
     });
   });
 
-
   /* This suite is all about the Menu
   * its visibility and non-visibility
   */
