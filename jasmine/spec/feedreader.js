@@ -98,18 +98,22 @@ $(function() {
   describe('New Feed Selection', function () {
     var content;
 
-    /* Storing the content of default loadFeed and then loading different feed
+    /* Storing the content of first loadFeed and then loading different feed
      */
     beforeEach(function (done) {
-      content = $('.feed .entry').html();
-      loadFeed(1, done);
+      $('.feed').empty();
+      loadFeed(1, function () {
+        content = $('.feed .entry').html();
+        loadFeed(3, done);
+      });
     });
 
     /* This test ensures that content of feed entries changed when loadFeed is called
      */
-    it('changes the content when loadFeed is called with different selection', function () {
+    it('changes the content when loadFeed is called', function (done) {
       var newContent = $('.feed .entry').html();
       expect(newContent).not.toEqual(content);
+      done();
     });
 
     /* After each is reseting view with original call for Udacity feeds
